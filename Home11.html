@@ -1,0 +1,82 @@
+﻿<?php
+ ob_start();
+ session_start();
+ require_once 'dbconnect.php';
+ 
+ // if session is not set this will redirect to login page
+ if( !isset($_SESSION['user']) ) {
+  header("Location: index.php");
+  exit;
+ }
+ // select loggedin users detail
+ $res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
+ $userRow=mysql_fetch_array($res);
+?>
+
+<!DOCTYPE HTML>
+<html>
+
+	<meta http-equiv="content-type" content="text/html" />
+	<meta name="author" content="gencyolcu" />
+
+	<title>Home</title>
+    <head>
+    <link type="text/css" rel="stylesheet" href="prof.css" />
+    </head>
+<body> 
+<div class="header1">
+<b><span class="glyphicon glyphicon-user"></span>&nbsp;Hi' <?php echo $userRow['userName']; ?>&nbsp;<span class="caret"></span></a></b>
+              <ul 
+<div id="img3" class="header1"><img src="proff.png" width="30px" height="30px"/></div>class="dr
+
+<div id="searcharea" class="header1"><input placeholder="search here..." type="text" id="searchbox"/></div> 
+<div id="profilearea" class="header1"><img src="proff.png" width="40px" height="40px"/></div>
+<div id="profilearea1" class="header1"><a href="Home.php">Home</a></div>
+<div id="profilearea3" class="header1">|</div>
+<div id="profilearea4" class="header1"><a href="Home11.html">Profile</a></div>
+<div id="findfriends" class="header1"><a href="find friends.php"><img src="frn.png" width="40px" height="40px"></div>
+<div id="message" class="header1"><a href="message.php"><img src="images.png" width="40px" height="40px"/></div>
+<div id="notification" class="header1"><a href="notification.php"><img src="noti.png" width="40px" height="40px"></div>
+<div id="profilearea2" class="header1">|</div>
+<div id="setting" class="header1"><a href="setting.php"><img src="sett.png" width="40px" height="40px" /></div>
+<div id="logout" class="header1"><span><a href="Logout.php"></span><img src="log.png" width="40px" height="40px" /></div>
+
+
+
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body>
+
+<form name="form1" enctype="multipart/form-data" method="post" action="processFiles.php">
+<p>
+<?
+// start of dynamic form
+$uploadNeed = $_POST['uploadNeed'];
+for($x=0;$x<$uploadNeed;$x++){
+?>
+<input name="uploadFile<? echo $x;?>" type="file" id="uploadFile<? echo $x;?>">
+</p>
+<?
+// end of for loop
+}
+?>
+<p><input name="uploadNeed" type="hidden" value="<? echo $uploadNeed;?>">
+<input type="submit" name="Submit" value="Submit">
+</p>
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
